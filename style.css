@@ -1,0 +1,373 @@
+@font-face {
+    font-family: Handwritten;
+    src: url(fonts/adelia.otf);
+}
+
+@font-face {
+    font-family: Capheads;
+    src: url(fonts/Nexa.ttf);
+}
+
+@keyframes fade-up {
+    0%{
+        opacity: 0;
+        transform: translateY(50px) scale(0.9);
+    }
+
+    100%{
+        opacity: 1;
+        transform: translateY(0px) scale(1);
+    }
+}
+
+@keyframes fade-down {
+    0%{
+        opacity: 0;
+        transform: translateY(-50px) scale(0.9);
+    }
+
+    100%{
+        opacity: 1;
+        transform: translateY(0px) scale(1);
+    }
+}
+
+@keyframes slide-up{
+    0%{
+        opacity: 0;
+        transform: translateY(150px) ;
+    }
+
+    100%{
+        opacity: 1;
+        transform: translateY(0px) ;
+    }
+}
+
+@keyframes dissolve-down {
+    0%{
+        opacity: 1;
+        transform: translateY(0px) ;
+    }
+
+    100%{
+        opacity: 0;
+        transform: translateY(150px) ;
+    }
+}
+
+@keyframes blur{
+    0%{
+        opacity: 0;
+        filter: blur(5px);
+        -webkit-filter: blur(5px);
+    }
+
+    100%{
+        opacity: 1;
+    }
+}
+
+
+
+html {
+    scroll-behavior: smooth;
+  }
+
+*{
+    margin: 0;
+    padding: 0;
+    outline: none;
+    box-sizing: border-box;
+}
+
+body{
+    height: 100vh;
+    width: 100vw;
+    margin: 0rem;
+    background-image: url(images/Background.png);
+    background-size:cover;
+    cursor: none;
+}
+
+.custom-cursor{
+    height:20px;
+    width: 20px;
+    border-radius: 20px;
+    background-color: rgba(50, 50, 60, 0.50);
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    z-index: 999;
+    pointer-events: none;
+    display: none;
+}
+
+h1{
+    margin-top: 4rem;
+    font-family: "Capheads",sans-serif;
+    font-size: clamp(6rem,8rem,10rem);
+    background: linear-gradient(180deg, #1CB5E0 0%, #051072 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: fade-up 2s 2s ease backwards;
+}
+
+h2{
+    margin-top: 4rem;
+    padding: 2rem;
+    font-size: 1.3rem;
+    font-family: "Handwritten", Courier, monospace;
+    animation: blur 2s ease backwards;
+}
+
+.background
+{
+    position: fixed;
+    aspect-ratio: 960/300; 
+    width: 100%;
+    bottom: 0;
+    right: 0;
+    background-repeat: no-repeat; 
+    background-position: center;
+    background-size: cover;
+    background-image: url('images/waves.svg');
+    animation: slide-up 2s 2s backwards;
+    z-index: -1;
+}
+.wrapper
+{
+    position: relative;
+    height: 1px;
+    width: 100vw;
+}
+
+.full-background
+{
+    display: none;
+    position: absolute;
+    bottom: 0;
+    aspect-ratio: 900/600; 
+    width: 100vw;
+    background-repeat: no-repeat; 
+    background-position: center;
+    background-size: cover;
+    background-image: url('images/waves-full.svg');
+    z-index: -1;
+}
+
+.container{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.weather-box img{
+    max-width: 220px;
+    filter: drop-shadow(0 0 0.3rem rgba(0,0,0,0.2));
+    margin: 1rem;
+}
+
+.search{
+    margin-top: 4rem;
+    display: flex;
+    width: 50vw;
+    height: 3.6rem;
+    border: 1px solid #ebebeb;
+    border-radius: 0.6rem;
+    background: rgb(246, 248, 250);
+    align-items: center;
+    justify-content: space-between;
+    animation: fade-down 2s 2s backwards;
+}
+
+.search > input{
+    height: 100% ;
+    width: 90%;
+    font-size: medium;
+    border: none;
+    background-color: rgba(0, 0, 0, 0);
+    cursor: none;
+}
+
+.search > i:first-of-type{
+    font-size: 1.5rem;
+    margin-left: 0.8rem;
+    margin-right: 0.8rem;
+    background: linear-gradient(180deg, #1CB5E0 0%, #051072 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.search > button {
+    height: 100%;
+    width: 8%;
+    border: none;
+    border-radius: 0.4rem;
+    background: linear-gradient(0deg, #1CB5E0 0%, #051072 100%);
+    color: white;
+    font-size: 1.2rem;
+    transition: 0.5s;
+    cursor: none;
+}
+
+.search > button:hover{
+    background: linear-gradient(0deg, #1CB5E0 0%, #051072 80%);
+    width: 15%;
+    opacity: 0.9;
+    font-size: 1.6rem;
+}
+
+.search > button:active{
+    transform: scale(0.88);
+}
+
+
+.details-container{
+    padding-top: 1.9rem;
+    padding-bottom: 2.8rem;
+}
+
+.error{
+    display: none;
+    align-items: center;
+    justify-content: space-between;
+    width: 28vw;
+    height: 8.6rem;
+    padding: 15px;
+    background: rgb(255, 242, 244);
+
+    font-family: "Capheads",sans-serif;
+    color: rgb(227, 0, 0);
+
+    border: 1px solid  rgb(227, 0, 0);
+    border-radius: 1.5rem; 
+
+    animation: fade-down 0.5s ease backwards;
+} 
+.error > img{
+    max-width: 106px;
+    filter: drop-shadow(0 0 0.3rem rgba(0,0,0,0.2));
+}
+
+#errorIcon{
+    display: none;
+    font-size: 1.5rem;
+    margin-left: 0.8rem;
+    margin-right: 0.8rem;
+    color: rgb(227, 0, 0);
+    transition: 0.5s ease;
+}
+
+.results{
+    display: none;
+    grid-template-columns: repeat(4,1fr);
+    grid-template-rows: repeat(3,1fr);
+    width: 80vw;
+    height: 80vh;
+    gap: 15px;
+    padding: 15px;
+    text-align: center; 
+    background: rgb(246, 248, 250);
+
+    border: 1px solid #ebebeb;
+    border-radius: 1.5rem; 
+
+    animation: fade-down 0.5s backwards;
+}
+
+.grid-cell:not(:first-of-type,.twilight-details,.weather-details),
+.sub-grid-cell{
+    align-self: stretch;
+    justify-self: stretch;
+    background: white;
+    color: #0062b9;
+    font-size: 1.3rem;
+    font-family: sans-serif;
+    border-radius: 1rem;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.text{
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: start;
+    font-family: "Capheads",sans-serif;
+    padding-top: 1rem;
+    padding-left: 1.2rem;
+    font-size: 0.9rem;
+    color: rgba(0, 0, 0, 0.5);
+}
+
+.text>i{
+    margin-top: 2.9px;
+    margin-right: 5.8px;
+}
+
+.text>svg{
+    margin-top: 1.5px;
+    margin-right: 5.8px;
+}
+
+.main-details{
+    grid-row: 1 / span 2;
+    grid-column: 1 / span 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.location{
+    font-family: "Capheads",sans-serif;
+    font-size: 3.2rem;
+}
+
+.temp{
+    font-family: "Capheads",sans-serif;
+    font-size: 2.8rem;
+}
+
+.description{
+    font-family: "Capheads",sans-serif;
+}
+
+.weather-details{
+    grid-row: 3;
+    display: grid;
+    gap: 15px;
+}
+
+.twilight-details{
+    grid-column: 2;
+    display: grid;
+    gap: 15px;
+}
+
+.humidity{
+    grid-row: 1;
+}
+
+.wind{
+    grid-row: 1;
+}
+
+.visibility{
+    grid-row: 2;
+}
+
+.pressure{
+    grid-row: 2;
+}
